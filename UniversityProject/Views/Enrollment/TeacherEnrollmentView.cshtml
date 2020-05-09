@@ -1,0 +1,215 @@
+﻿@model IEnumerable<UniversityProject.Models.Enrollment>
+
+    @{
+    ViewData["Title"] = "Index";
+    }
+
+
+    <form asp-controller="Enrollment" asp-action="TeacherEnrollmentView" method="get">
+        <p style="position:relative; left:38%;">
+            <b>Search by:</b>
+            <input type="text" name="courseYear" placeholder="Year">
+            <input type="submit" value="Filter" />
+
+        </p>
+    </form>
+    <h2 style="position:relative; left:43%;">Active Students</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Course")
+                </th>
+                <th>
+                    @Html.DisplayName("Student")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Semester)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Grade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExamPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeminalPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdditionalPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinishDate)
+                </th>
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+            if (!item.FinishDate.HasValue)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    <a href="~/file/@item.FileName">
+                        @item.FileName
+                    </a>
+                </td>
+                <td>
+                    <a href=" @Html.DisplayFor(modelItem => item.ProjectUrl)">
+                        @Html.DisplayFor(modelItem => item.ProjectUrl)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExamPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeminalPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdditionalPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+
+                <td>
+                    <a asp-action="TeacherEnrollmentEdit" asp-route-id="@item.Id">Edit</a>
+
+                </td>
+            </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <h2 style="position:relative; left:44.5%;">Finished Students</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Course")
+                </th>
+                <th>
+                    @Html.DisplayName("Student")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Semester)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Grade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExamPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeminalPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdditionalPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinishDate)
+                </th>
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            if (item.FinishDate.HasValue)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    <a href="~/file/@item.FileName">
+                        @item.FileName
+                    </a>
+                </td>
+                <td>
+                    <a href=" @Html.DisplayFor(modelItem => item.ProjectUrl)">
+                        @Html.DisplayFor(modelItem => item.ProjectUrl)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExamPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeminalPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdditionalPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+            </tr>
+                }
+            }
+        </tbody>
+    </table>
